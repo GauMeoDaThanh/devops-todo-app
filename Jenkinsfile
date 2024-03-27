@@ -8,3 +8,6 @@ pipeline {
         }
     }
 }
+withCredentials([usernamePassword(credentialsId: "${jenkinsCredentialsId}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+    echo "username is $USERNAME"            
+}
