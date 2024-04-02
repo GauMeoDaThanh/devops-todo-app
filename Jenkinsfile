@@ -18,7 +18,7 @@ pipeline {
         stage("build and test") {
             steps {
                 sh "ls -la"
-                sh "docker build -t gaumeodathanh/mgm-training-todo-app:0.0.2 ."
+                sh "docker build -t gaumeodathanh/devops-mgm-training-todo-app:0.0.2 ."
                 sh "docker images"
             }
         }
