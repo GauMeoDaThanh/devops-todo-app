@@ -35,7 +35,9 @@ pipeline {
                 withBuildConfiguration {
                     sshagent(credentials: [SSH_ID_REF]) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no root@ec2-18-143-167-76.ap-southeast-1.compute.amazonaws.com "docker run --detach --name tvandat-todo-app -p 9603:8000 gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
+                            ssh -o StrictHostKeyChecking=no root@ec2-18-143-167-76.ap-southeast-1.compute.amazonaws.com 
+                            "docker rm -f 93a7eabad6380d0a13bc30d6e290d3a2c7d25b8140f017bdff2debd6a1036181"
+                            "docker run --detach --name tvandat-todo-app -p 9603:8000 gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
                         '''
                     }
                 }
