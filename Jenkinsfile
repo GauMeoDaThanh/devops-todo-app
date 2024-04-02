@@ -25,7 +25,7 @@ pipeline {
             steps {
                 withBuildConfiguration {
                     sh 'docker login --username ${repository_username} --password ${repository_password}'
-                    sh "docker push gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
+                    sh "docker push gaumeodathanh/devops-mgm-training-todo-app"
                 }
             }
         }
