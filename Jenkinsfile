@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh "ls -la"
                 sh "docker build -t gaumeodathanh/mgm-training-todo-app:0.0.2 ."
+                sh "docker images"
             }
         }
         stage("Docker login and push docker image") {
@@ -26,7 +27,6 @@ pipeline {
                 withBuildConfiguration {
                     sh 'docker login --username ${repository_username} --password ${repository_password}'
                     sh "docker push gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
-                    sh "docker images"
                 }
             }
         }
