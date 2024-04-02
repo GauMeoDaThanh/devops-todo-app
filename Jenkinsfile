@@ -3,7 +3,7 @@
 import groovy.transform.Field
 
 @Field
-String DOCKER_USER_REF = 'v-docker-hub'
+String DOCKER_USER_REF = 'vandat-docker-hub'
 @Field
 String SSH_ID_REF = 'ssh-credentials-id'
 
@@ -18,14 +18,14 @@ pipeline {
         stage("build and test") {
             steps {
                 sh "ls -la"
-                sh "docker build -t vitnguyen/mgm-training-todo-app:0.0.2 ."
+                sh "docker build -t gaumeodathanh/mgm-training-todo-app:0.0.2 ."
             }
         }
         stage("Docker login and push docker image") {
             steps {
                 withBuildConfiguration {
                     sh 'docker login --username ${repository_username} --password ${repository_password}'
-                    sh "docker push vitnguyen/mgm-training-todo-app:0.0.2"
+                    sh "docker push gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 withBuildConfiguration {
                     sshagent(credentials: [SSH_ID_REF]) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no root@ec2-18-143-167-76.ap-southeast-1.compute.amazonaws.com "docker run --detach --name vitnguyen-todo-app -p 16673:8000 vitnguyen/mgm-training-todoapp:0.0.2"
+                            ssh -o StrictHostKeyChecking=no root@ec2-18-143-167-76.ap-southeast-1.compute.amazonaws.com "docker run --detach --name devops-mgm-training-todo-app -p 16673:8000 gaumeodathanh/devops-mgm-training-todo-app:0.0.2"
                         '''
                     }
                 }
